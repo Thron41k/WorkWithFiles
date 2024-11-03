@@ -5,8 +5,11 @@
 /// </summary>
 public static class DirectoryCleaner
 {
+    // Константа, определяющая время, в течение которого файлы и поддиректории не должны использоваться для удаления
+    private const int NoAcccessForDeleteTime = 3;
+
     /// <summary>
-    /// Очищает директорию, удаляя файлы и поддиректории, которые не использовались более 30 минут.
+    /// Очищает директорию, удаляя файлы и поддиректории, которые не использовались более NoAcccessForDeleteTime минут.
     /// </summary>
     /// <param name="directoryPath">Путь к директории, которую нужно очистить.</param>
     public static void CleanDirectory(string? directoryPath)
@@ -41,8 +44,8 @@ public static class DirectoryCleaner
             // Перебираем файлы в директории
             foreach (var file in files)
             {
-                // Проверяем, использовался ли файл в течение последних 30 минут
-                if (!((DateTime.Now - file.LastAccessTime).TotalMinutes > 30)) continue;
+                // Проверяем, использовался ли файл в течение последних NoAcccessForDeleteTime минут
+                if (!((DateTime.Now - file.LastAccessTime).TotalMinutes > NoAcccessForDeleteTime)) continue;
 
                 try
                 {
@@ -67,8 +70,8 @@ public static class DirectoryCleaner
             // Перебираем поддиректории в директории
             foreach (var subdirectory in subdirectories)
             {
-                // Проверяем, использовалась ли поддиректория в течение последних 30 минут
-                if (!((DateTime.Now - subdirectory.LastAccessTime).TotalMinutes > 30)) continue;
+                // Проверяем, использовалась ли поддиректория в течение последних NoAcccessForDeleteTime минут
+                if (!((DateTime.Now - subdirectory.LastAccessTime).TotalMinutes > NoAcccessForDeleteTime)) continue;
 
                 try
                 {
