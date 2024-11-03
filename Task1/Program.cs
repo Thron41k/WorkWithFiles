@@ -17,9 +17,5 @@ else
     // Если аргументы командной строки присутствуют, сохраняем первый аргумент в переменной path
     path = args[0];
 }
-// Проверяем, не равен ли путь null
-if (path != null)
-{
-    // Если путь не null, вызываем метод CleanDirectory класса DirectoryCleaner для очистки директории
-    DirectoryCleaner.CleanDirectory(path);
-}
+// Вызываем метод CleanDirectory класса DirectoryCleaner для очистки директории
+DirectoryCleaner.CleanDirectory(path);
