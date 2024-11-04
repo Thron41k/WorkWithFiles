@@ -6,7 +6,7 @@
 public static class DirectoryCleaner
 {
     // Константа, определяющая время, в течение которого файлы и поддиректории не должны использоваться для удаления
-    private const int NoAcccessForDeleteTime = 3;
+    private const int NoAcccessForDeleteTime = 30;
 
     /// <summary>
     /// Очищает директорию, удаляя файлы и поддиректории, которые не использовались более NoAcccessForDeleteTime минут.
